@@ -20,16 +20,15 @@ class UserTableSeeder extends Seeder
 		
 		foreach (range(1,10) as $index) {
 			DB::table('users')->insert([
-				'id' => $faker->numberBetween($min = 1, $max = 9999),
+				'id' => $faker->unique()->numberBetween($min = 1, $max = 9999),
 				'name' => $faker->firstName,
-				'email' => $faker->email,
+				'email' => $faker->unique()->email,
 				'role' => $faker->numberBetween(0,1),
 				'password' => Hash::make($faker->word),
-				'created_at' => $current_date_time = Carbon::now()->toDateTimeString(),
-				'updated_at' => $current_date_time = Carbon::now()->toDateTimeString()
+				'created_at' => Carbon::now()->toDateTimeString(),
+				'updated_at' => Carbon::now()->toDateTimeString()
 				]);
 		}
-	}
-				
-    }
+	}			
+}
 ?>
