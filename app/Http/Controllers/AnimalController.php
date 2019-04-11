@@ -14,7 +14,8 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+        $animals = Animal::all()->toArray();
+		return view('animals.staffindex',compact('animals'));
     }
 
     /**
