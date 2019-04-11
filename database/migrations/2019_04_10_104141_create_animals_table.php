@@ -19,14 +19,12 @@ class CreateAnimalsTable extends Migration
 			$table->string('name', 20);
 			$table->date('dob');
 			$table->string('description', 500);
-			$table->string('picture', 256)->nullable();
+			$table->string('image', 256)->nullable();
 			$table->integer('availability')->default(0);
 			
             $table->timestamps();
         });
     }
-	
-	#name, dob, desc, pic, availability
 
     /**
      * Reverse the migrations.
