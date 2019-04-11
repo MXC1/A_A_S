@@ -89,7 +89,8 @@ class AnimalController extends Controller
      */
     public function show($id)
     {
-        //
+        $animal = Animal::find($id);
+		return view('animals.show',compact('animal'));
     }
 
     /**
