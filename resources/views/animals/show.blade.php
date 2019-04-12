@@ -34,7 +34,7 @@
 							</tr>
 							<tr>
 								<th>Picture</th>
-								<td style="max-width:150px;" ><a target="_blank" href="/storage/images/{{$animal['picture']}}"><img width="225px" src="/storage/images/{{$animal['picture']}}"></a></td>
+								<td style="max-width:150px;" ><a target="_blank" href="/storage/images/{{$animal['image']}}"><img width="225px" src="/storage/images/{{$animal['image']}}"></a></td>
 							</tr>
 							</table>
 							<table>

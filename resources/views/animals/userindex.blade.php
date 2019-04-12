@@ -18,9 +18,9 @@
 								<th>Owner</th>
 							</tr>
 						</thead>
-						
 						<tbody>
 @foreach($animals as $animal)
+@if($animal['availability']==0)
 							<tr>
 								<td>{{$animal['id']}}</td>
 								<td><a target="_blank" href="/storage/images/{{$animal['image']}}"><img width="50px" src="/storage/images/{{$animal['image']}}"></a></td>
@@ -34,17 +34,12 @@
 btn- primary">Details</a>
 								</td>
 								<td>
-									<a href="{{action('AnimalController@edit', $animal['id'])}}" class="btn
-btn- warning">Edit</a>
-								</td>
-								<td>
-									<form action="{{action('AnimalController@destroy', $animal['id'])}}"
+									<form action="{{action('AnimalController@requestAdopt', $animal['id'])}}"
 method="post"> @csrf
-										<input name="_method" type="hidden" value="DELETE">
-											<button class="btn btn-danger" type="submit"> Delete</button>
-										</form>
-									</td>
+										
+											<button class="btn btn-danger" type="submit"> Request to Adopt</button>									</td>
 								</tr>
+@endif
 @endforeach
 							</tbody>
 						</table>

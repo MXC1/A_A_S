@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Animal;
+use App\Requests;
+use Gate;
+use Auth;
 
 class AnimalController extends Controller
 {
@@ -15,7 +18,11 @@ class AnimalController extends Controller
     public function index()
     {
         $animals = Animal::all()->toArray();
-		return view('animals.staffindex',compact('animals'));
+		if (Gate::allows('isStaff')) {
+			return view('animals.staffindex',compact('animals'));
+		} else {
+			return view('animals.userindex',compact('animals'));
+		}
     }
 
     /**
@@ -73,8 +80,7 @@ class AnimalController extends Controller
 			$animal->species = $request->input('species');
 			$animal->description = $request->input('description');
 			$animal->availability = $request->input('availability');
-			$animal->created_at = now();
-			$animal->picture = $fileNameToStore;
+			$animal->image = $fileNameToStore;
 			// save the Animal object
 			$animal->save();
 			// generate a redirect HTTP response with a success message
@@ -92,6 +98,38 @@ class AnimalController extends Controller
         $animal = Animal::find($id);
 		return view('animals.show',compact('animal'));
     }
+	
+	public function showRequests()
+    {
+		$username = Auth::user()->name;
+        $requests = Requests::all();
+		if (Gate::denies('isStaff')){
+			$requests = $requests->where('username', $username);
+		}
+		return view('animals/requests',compact('requests'));
+    }
+	
+	public function requestAdopt($id)
+	{
+		$request = new Request;
+		$request->animalid=$id;
+		$request->username=auth()->user()->name;
+		$request->save();
+		
+		$animal = Animal::find($id);
+		$animal -> availability = 0;
+		$animal -> save();
+	
+		return back()->with('success', 'Adoption request has been submitted.');
+	}
+	
+	public function approve($id){
+		return "furk off";
+	}
+	
+	public function deny($id){
+		return "deny";
+	}
 
     /**
      * Show the form for editing the specified resource.
