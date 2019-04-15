@@ -17,8 +17,9 @@
 						
 						<tbody>
 @foreach($requests as $request)
+@if($request['approved']==0)
 							<tr>
-								<td>{{$request['requestid']}}</td>
+								<td>{{$request['id']}}</td>
 								<td>{{$request['username']}}</td>
 								<td>{{$request['animalid']}}</td>
 								<td>
@@ -30,21 +31,20 @@ btn- primary">Animal Details</a>
 btn- warning">Requester Details</a>
 								</td>
 								<td>
-									<form action="{{action('AnimalController@approve', $request['requestid'])}}"
-method="POST"> @csrf
-											<input type="hidden" name="_method" value="PATCH">											
+									<form action="{{action('RequestController@approve', $request['id'])}}"
+method="POST"> @csrf									
 											<button class="btn btn-success" method="POST" type="submit"> Approve</button>
 										</form>
 									</td>
 									<td>
-									<form action="{{action('AnimalController@deny', $request['requestid'])}}"
+									<form action="{{action('RequestController@deny', $request['id'])}}"
 method="POST"> @csrf
-											<input type="hidden" name="_method" value="PATCH">
 											<button class="btn btn-danger" method="POST" type="submit"> Deny</button>
 										</form>
 									</td>
 									
 								</tr>
+@endif
 @endforeach
 							</tbody>
 						</table>

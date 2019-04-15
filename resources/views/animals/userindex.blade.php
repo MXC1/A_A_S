@@ -15,12 +15,15 @@
 								<th>Name</th>
 								<th>Date of Birth</th>
 								<th>Description</th>
+								<th>Availability</th>
+								@if($animal['availability']=0)
 								<th>Owner</th>
+								@endif
 							</tr>
 						</thead>
 						<tbody>
 @foreach($animals as $animal)
-@if($animal['availability']==0)
+@if($animal['availability']==1)
 							<tr>
 								<td>{{$animal['id']}}</td>
 								<td><a target="_blank" href="/storage/images/{{$animal['image']}}"><img width="50px" src="/storage/images/{{$animal['image']}}"></a></td>
@@ -34,7 +37,7 @@
 btn- primary">Details</a>
 								</td>
 								<td>
-									<form action="{{action('AnimalController@requestAdopt', $animal['id'])}}"
+									<form action="{{action('RequestController@requestAdopt', $animal['id'])}}"
 method="post"> @csrf
 										
 											<button class="btn btn-danger" type="submit"> Request to Adopt</button>									</td>

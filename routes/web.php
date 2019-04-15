@@ -23,13 +23,15 @@ Route::resource('animals','AnimalController');
 
 Route::resource('users','UserController');
 
-Route::post('animals/requestAdopt/{id}', 'AnimalController@requestAdopt');
+Route::resource('requests','RequestsController');
 
 Route::get('display',
 'UserController@display')->name('display_account');
 
-Route::get('/requests', 'AnimalController@showRequests');
+Route::post('animals/requestAdopt/{id}', 'RequestController@requestAdopt');
 
-Route::post('requests/approve/{$id}', 'AnimalController@approve')->name('approve');
+Route::get('/requests', 'RequestController@showRequests');
 
-Route::post('requests/deny/{$id}', 'AnimalController@deny')->name('deny');
+Route::post('requests/approve/{id}', ['uses' => 'RequestController@approve'])->name('requests.approve');
+
+Route::post('requests/deny/{id}', ['uses' => 'RequestController@deny'])->name('requests.deny');
