@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Gate;
 use Auth;
 use App\Requests;
+use App\Animal;
 
 class RequestController extends Controller
 {
@@ -26,7 +27,7 @@ class RequestController extends Controller
 	{
 		$request = new Requests;
 		$request->animalid=$id;
-		$request->username=auth()->user()->name;
+		$request->userid=auth()->user()->id;
 		$request->save();
 	
 		return back()->with('success', 'Adoption request has been submitted.');
@@ -37,6 +38,14 @@ class RequestController extends Controller
 		$request = Requests::find($id);
 		$request->approved=1;
 		$request->save();
+		
+		$animalid = $request->animalid;
+		$ownerusername = $request->username;
+		
+		$animal = Animal::find($animalid);
+		$animal->availability=0;
+		$animal->ownerusername=$ownerusername;
+		$animal->save();
 		
 		return back()->with('success', 'Adoption request has been approved.');
 	}
