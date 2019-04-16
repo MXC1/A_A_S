@@ -6,15 +6,22 @@
 			<div class="card">
 				<div class="card-header">Display all animals</div>
 				<div class="card-body">
+@if (\Session::has('success'))
+				<div class="alert alert-success">
+					<p>{{ \Session::get('success') }}</p>
+				</div>
+				<br />
+@endif
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th>ID</th>
 								<th>Picture</th>
-								<th>Species</th>
 								<th>Name</th>
+								<th>Species</th>
 								<th>Date of Birth</th>
 								<th>Description</th>
+								<th>Status</th>
 								<th>Owner</th>
 							</tr>
 						</thead>
@@ -24,10 +31,17 @@
 							<tr>
 								<td>{{$animal['id']}}</td>
 								<td><a target="_blank" href="/storage/images/{{$animal['image']}}"><img width="50px" src="/storage/images/{{$animal['image']}}"></a></td>
-								<td>{{$animal['species']}}</td>
 								<td>{{$animal['name']}}</td>
+								<td>{{$animal['species']}}</td>
 								<td>{{$animal['dob']}}</td>
 								<td>{{$animal['description']}}</td>
+								<td>
+								@if($animal['ownerusername']==null)
+									<label class="alert badge-secondary"> Not Adopted</label>
+								@else
+									<button class="alert badge-success"> Adopted</button>
+								@endif
+								</td>
 								<td>{{$animal['ownerusername']}}</td>
 								<td>
 									<a href="{{action('AnimalController@show', $animal['id'])}}" class="btn
