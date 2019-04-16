@@ -14,7 +14,7 @@
 							</tr>
 							<tr>
 								<th>Name</th>
-								<td>{{$animal['id']}}</td>
+								<td>{{$animal['name']}}</td>
 							</tr>
 							<tr>
 								<th>Date of Birth</th>
@@ -40,7 +40,7 @@
 							<table>
 								<tr>
 									<td>
-										<a href="/animals" class="btn btn-primary" role="button">Return to list</a>
+										<a href="javascript:history.back()" class="btn btn-primary" role="button">Return to list</a>
 									</td>
 									<td>
 										<a href="{{action('AnimalController@edit', $animal['id'])}}" class="btn
