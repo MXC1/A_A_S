@@ -6,6 +6,12 @@
 			<div class="card">
 				<div class="card-header">Display all requests</div>
 				<div class="card-body">
+@if (\Session::has('success'))
+				<div class="alert alert-success">
+					<p>{{ \Session::get('success') }}</p>
+				</div>
+				<br />
+@endif
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -27,7 +33,7 @@
 btn- primary">Animal Details</a>
 								</td>
 								<td>
-									<a href="{{action('UserController@show', $request['username'])}}" class="btn
+									<a href="{{action('UserController@show', $request['userid'])}}" class="btn
 btn- warning">Requester Details</a>
 								</td>
 								<td>
