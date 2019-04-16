@@ -40,7 +40,9 @@
 						</li>
 						@if (Auth()->user()->isStaff())
 						<li class="nav-item">
-						<a class="nav-link" href="{{ url('animals/create') }}">Create </a>
+						<a class="nav-link" href="{{ url('animals/create') }}">Add Animal </a>
+						<li class="nav-item">
+						<a class="nav-link" href="{{ url('users') }}">Users </a>
 						@endif
 						</li>
 						<li class="nav-item">
@@ -86,7 +88,7 @@
         </nav>
     </div>
 	
-	<main class="py-4">
+	<main class="py-5">
 		<content>
 			@yield('content')
 		</content>

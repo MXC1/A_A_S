@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Gate;
 
 class UserController extends Controller
 {
@@ -15,7 +17,7 @@ class UserController extends Controller
     {
 		if (Gate::allows('isStaff')) {
 			$users = User::all()->toArray();
-			return view('users.staffindex',compact('users'));
+			return view('users.index',compact('users'));
 		}
     }
 
@@ -48,7 +50,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        print "nothing";
+		$user = User::find($id);
+        return view('users.show', compact('user'));
     }
 
     /**
