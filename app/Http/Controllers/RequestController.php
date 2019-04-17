@@ -8,15 +8,16 @@ use Gate;
 use Auth;
 use App\Requests;
 use App\Animal;
+use App\User;
 
 class RequestController extends Controller
 {
     public function showRequests()
     {
-		$username = Auth::user()->name;
+		$id = Auth::user()->id;
         $requests = Requests::all();
 		if (Gate::denies('isStaff')){
-			$requests = $requests->where('username', $username);
+			$requests = $requests->where('userid', $id);
 			return view('animals/userrequests',compact('requests'));
 		} else {
 			return view('animals/staffrequests',compact('requests'));
@@ -40,7 +41,9 @@ class RequestController extends Controller
 		$request->save();
 		
 		$animalid = $request->animalid;
-		$ownerusername = $request->username;
+		$ownerid = $request->userid;
+		$owner = User::find($ownerid);
+		$ownerusername = $owner['name'];
 		
 		$animal = Animal::find($animalid);
 		$animal->availability=0;
