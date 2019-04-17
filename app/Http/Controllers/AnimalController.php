@@ -107,7 +107,8 @@ class AnimalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $animal = Animal::find($id);
+		return view('animals.edit', compact('animal'));
     }
 
     /**
