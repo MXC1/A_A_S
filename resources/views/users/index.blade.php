@@ -23,7 +23,13 @@
 								<td>{{$user['id']}}</td>
 								<td>{{$user['name']}}</td>
 								<td>{{$user['email']}}</td>
-								<td>{{$user['role']}}</td>
+								<td>
+								@if ($user['role']==0)
+								<button class="alert badge-primary" style="width: 100px"> User</button>
+								@else
+								<button class="alert badge-primary" style="width: 100px"> Admin</button>
+								@endif
+								</td>
 								<td>{{$user['created_at']}}</td>
 								<td>
 									<a href="{{action('UserController@show', $user['id'])}}" class="btn
