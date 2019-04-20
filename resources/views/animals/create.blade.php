@@ -62,6 +62,7 @@ placeholder="Image file" >
 						<br>
 						<div class="col-md-6 col-md-offset-4">
 							<input type="submit" class="btn btn-primary" />
+							<br><br>
 							<input type="reset" class="btn btn-primary" />
 						</div>
 						<br>
