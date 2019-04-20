@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+
+<?php
+
+use App\Animal;
+
+?>
+
 <div class="listcontainer">
 	<div class="row justify-content-center">
 		<div class="col-md-8 ">
@@ -16,7 +23,7 @@
 						<thead>
 							<tr>
 								<th>Request ID</th>
-								<th>Animal ID</th>
+								<th>Animal Name</th>
 								<th></th>
 								<th>Status</th>
 							</tr>
@@ -26,7 +33,7 @@
 @foreach($requests as $request)
 							<tr>
 								<td>{{$request['id']}}</td>
-								<td>{{$request['animalid']}}</td>
+								<td>{{Animal::find($request['animalid'])->name}}</td>
 								<td>
 									<a href="{{action('AnimalController@show', $request['animalid'])}}" class="btn btn-primary">Animal Details</a>
 								</td>

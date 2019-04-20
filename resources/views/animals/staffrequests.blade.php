@@ -1,3 +1,11 @@
+
+<?php
+
+use App\Animal;
+use App\User;
+
+?>
+
 @extends('layouts.app')
 @section('content')
 <div class="listcontainer">
@@ -17,7 +25,7 @@
 							<tr>
 								<th>Request ID</th>
 								<th>Request Made By</th>
-								<th>Animal ID</th>
+								<th>Animal</th>
 							</tr>
 						</thead>
 						
@@ -26,8 +34,8 @@
 @if($request['approved']==0)
 							<tr>
 								<td>{{$request['id']}}</td>
-								<td>{{$request['username']}}</td>
-								<td>{{$request['animalid']}}</td>
+								<td>{{User::find($request['userid'])->name}}</td>
+								<td>{{Animal::find($request['animalid'])->name}}</td>
 								<td>
 									<a href="{{action('AnimalController@show', $request['animalid'])}}" class="btn
 btn- primary">Animal Details</a>
