@@ -55,6 +55,14 @@ class RequestController extends Controller
 		$animal->ownerusername=$ownerusername;
 		$animal->save();
 		
+		$otherrequests = Requests::where('animalid', $animalid)->where('id', "!=", $request->id)->get();
+		
+		foreach($otherrequests as $request){
+			$request = Requests::find($request->id);
+			$request->approved=2;
+			$request->save();
+		}
+		
 		return back()->with('success', 'Adoption request has been approved.');
 	}
 	
