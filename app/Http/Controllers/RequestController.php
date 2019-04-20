@@ -24,6 +24,11 @@ class RequestController extends Controller
 		}
     }
 	
+	public function showAdoptions(){
+		$requests = Requests::all();
+		return view('animals/adoptionindex',compact('requests'));
+	}
+	
 	public function requestAdopt($id)
 	{
 		$request = new Requests;

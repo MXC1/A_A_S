@@ -32,6 +32,8 @@ Route::post('animals/requestAdopt/{id}', 'RequestController@requestAdopt');
 
 Route::get('/requests', 'RequestController@showRequests');
 
+Route::get('/adoptions', 'RequestController@showAdoptions');
+
 Route::post('requests/approve/{id}', ['uses' => 'RequestController@approve'])->name('requests.approve');
 
 Route::post('requests/deny/{id}', ['uses' => 'RequestController@deny'])->name('requests.deny');
