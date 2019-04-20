@@ -1,5 +1,14 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Requests;
+use Auth;
+
+?>
+
 @extends('layouts.app')
 @section('content')
+
 <div class="listcontainer">
 	<div class="row justify-content-center">
 		<div class="col-md-8 ">
@@ -40,8 +49,12 @@ btn- primary">Details</a>
 								<td>
 									<form action="{{action('RequestController@requestAdopt', $animal['id'])}}"
 method="post"> @csrf
-										
-											<button class="btn btn-danger" type="submit"> Request to Adopt</button>									</td>
+										@if(Requests::where('animalid', $animal['id'])->where('userid', Auth::user()->id)->first() == null)
+											<button class="btn btn-success" type="submit"> Request to Adopt</button>
+										@else
+											<button class="alert badge-primary" type="submit"> Requested</button>
+										@endif
+										</td>
 								</tr>
 @endif
 @endforeach
