@@ -1,3 +1,9 @@
+<?php
+
+use App\User;
+
+?>
+
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -26,7 +32,11 @@
 							</tr>
 							<tr>
 								<td>Owner</th>
-								<td>{{$animal['ownerusername']}}</td>
+								<td>
+								@if($animal['userid']!=null)
+									{{User::find($animal['userid'])->name}}
+								@endif
+								</td>
 							</tr>
 							<tr>
 								<th>Notes </th>

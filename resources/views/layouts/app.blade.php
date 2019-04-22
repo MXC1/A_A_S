@@ -45,11 +45,16 @@
 						<a class="nav-link" href="{{ url('users') }}">Users </a>
 						<li class="nav-item">
 						<a class="nav-link" href="{{ url('adoptions') }}">Adoptions </a>
-						@endif
 						</li>
 						<li class="nav-item">
 						<a class="nav-link" href="{{ url('requests') }}">Pending Requests </a>
 						</li>
+						@else
+						</li>
+						<li class="nav-item">
+						<a class="nav-link" href="{{ url('requests') }}">Your Requests </a>
+						</li>
+						@endif
 						@endguest
                     </ul>
 

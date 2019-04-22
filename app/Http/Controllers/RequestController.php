@@ -47,12 +47,10 @@ class RequestController extends Controller
 		
 		$animalid = $request->animalid;
 		$ownerid = $request->userid;
-		$owner = User::find($ownerid);
-		$ownerusername = $owner['name'];
 		
 		$animal = Animal::find($animalid);
 		$animal->availability=0;
-		$animal->ownerusername=$ownerusername;
+		$animal->ownerid=$ownerid;
 		$animal->save();
 		
 		$otherrequests = Requests::where('animalid', $animalid)->where('id', "!=", $request->id)->get();

@@ -1,10 +1,17 @@
+<?php
+
+use App\Animal;
+use App\User;
+
+?>
+
 @extends('layouts.app')
 @section('content')
 <div class="listcontainer">
 	<div class="row justify-content-center">
 		<div class="col-md-8 ">
 			<div class="card">
-				<div class="card-header">Display all requests</div>
+				<div class="card-header">Display all processed adoptions</div>
 				<div class="card-body">
 @if (\Session::has('success'))
 				<div class="alert alert-success">
@@ -16,8 +23,8 @@
 						<thead>
 							<tr>
 								<th>Request ID</th>
-								<th>Requester ID</th>
-								<th>Animal ID</th>
+								<th>Requester Name</th>
+								<th>Animal Name</th>
 								<th></th>
 								<th></th>
 								<th>Decision</th>
@@ -29,8 +36,8 @@
 @if($request['approved']!=0)
 							<tr>
 								<td>{{$request['id']}}</td>
-								<td>{{$request['userid']}}</td>
-								<td>{{$request['animalid']}}</td>
+								<td>{{User::find($request['userid'])->name}}</td>
+								<td>{{Animal::find($request['animalid'])->name}}</td>
 								<td>
 									<a href="{{action('AnimalController@show', $request['animalid'])}}" class="btn
 btn- primary">Animal Details</a>
