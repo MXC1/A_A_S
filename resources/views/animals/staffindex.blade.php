@@ -1,3 +1,9 @@
+<?php 
+
+use App\User;
+
+?>
+
 @extends('layouts.app')
 @section('content')
 <div class="listcontainer">
@@ -36,13 +42,15 @@
 								<td>{{$animal['dob']}}</td>
 								<td>{{$animal['description']}}</td>
 								<td>
-								@if($animal['ownerusername']==null)
+								@if($animal['ownerid']==null)
 									<label class="alert badge-secondary"> Not Adopted</label>
+									</td>
+									<td></td>
 								@else
 									<button class="alert badge-success"> Adopted</button>
+									</td>
+									<td>{{User::find($animal['ownerid'])->name}}</td>
 								@endif
-								</td>
-								<td>{{$animal['ownerusername']}}</td>
 								<td>
 									<a href="{{action('AnimalController@show', $animal['id'])}}" class="btn
  btn-primary">Details</a>
