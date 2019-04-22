@@ -75,11 +75,11 @@ return [
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', 'us-cdbr-iron-east-02.cleardb.net'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'heroku_eafbf1b21bbd373'),
+            'username' => env('DB_USERNAME', 'b5da4926212aa2'),
+            'password' => env('DB_PASSWORD', 'e6e4d612'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
