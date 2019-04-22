@@ -13,7 +13,7 @@ use Auth;
 	<div class="row justify-content-center">
 		<div class="col-md-8 ">
 			<div class="card">
-				<div class="card-header">Display all animals</div>
+				<div class="card-header">Display all animals available for adoption</div>
 				<div class="card-body">
 @if (\Session::has('success'))
 				<div class="alert alert-success">
@@ -34,7 +34,7 @@ use Auth;
 						</thead>
 						<tbody>
 @foreach($animals as $animal)
-@if($animal['availability']==1 || $animal['ownerusername']==Auth::user()->name)
+@if($animal['availability']==1)
 							<tr>
 								<td>{{$animal['id']}}</td>
 								<td><a target="_blank" href="/storage/images/{{$animal['image']}}"><img width="50px" src="/storage/images/{{$animal['image']}}"></a></td>
@@ -52,7 +52,11 @@ method="post"> @csrf
 										@if(Requests::where('animalid', $animal['id'])->where('userid', Auth::user()->id)->first() == null)
 											<button class="btn btn-success" type="submit"> Request to Adopt</button>
 										@else
+										@if($animal['ownerid']==Auth::user()->id)
+											<button class="alert badge-success" type="submit"> Adopted</button>
+										@else
 											<button class="alert badge-primary" type="submit"> Requested</button>
+										@endif
 										@endif
 										</td>
 								</tr>
