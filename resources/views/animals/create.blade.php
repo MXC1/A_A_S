@@ -1,6 +1,7 @@
 @include('layouts.app')
 <!-- define the content section -->
 @section('content')
+@if (Auth()->user()->isStaff())
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-10 ">
@@ -61,6 +62,7 @@ placeholder="Image file" >
 						<br>
 						<div class="col-md-6 col-md-offset-4">
 							<input type="submit" class="btn btn-primary" />
+							<br><br>
 							<input type="reset" class="btn btn-primary" />
 						</div>
 						<br>
@@ -70,3 +72,11 @@ placeholder="Image file" >
 		</div>
 	</div>
 </div>
+
+@else 
+<div class="row justify-content-center">
+	<div class="alert alert-danger">
+					You are not authorised to view this page
+	</div>
+</div>
+@endif

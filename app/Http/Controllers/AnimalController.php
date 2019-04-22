@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Animal;
+ 
+use Gate;
+use Auth;
 
 class AnimalController extends Controller
 {
@@ -14,7 +17,12 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+        $animals = Animal::all()->toArray();
+		if (Gate::allows('isStaff')) {
+			return view('animals.staffindex',compact('animals'));
+		} else {
+			return view('animals.userindex',compact('animals'));
+		}
     }
 
     /**
@@ -72,8 +80,7 @@ class AnimalController extends Controller
 			$animal->species = $request->input('species');
 			$animal->description = $request->input('description');
 			$animal->availability = $request->input('availability');
-			$animal->created_at = now();
-			$animal->picture = $fileNameToStore;
+			$animal->image = $fileNameToStore;
 			// save the Animal object
 			$animal->save();
 			// generate a redirect HTTP response with a success message
@@ -88,7 +95,8 @@ class AnimalController extends Controller
      */
     public function show($id)
     {
-        //
+        $animal = Animal::find($id);
+		return view('animals.show',compact('animal'));
     }
 
     /**
@@ -99,7 +107,8 @@ class AnimalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $animal = Animal::find($id);
+		return view('animals.edit', compact('animal'));
     }
 
     /**
