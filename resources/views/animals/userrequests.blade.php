@@ -32,7 +32,7 @@ use App\Animal;
 						<tbody>
 @foreach($requests as $request)
 							<tr>
-								<td>{{$request['id']}}</td>
+								<td>{{$request['requestid']}}</td>
 								<td>{{Animal::find($request['animalid'])->name}}</td>
 								<td>
 									<a href="{{action('AnimalController@show', $request['animalid'])}}" class="btn btn-primary">Animal Details</a>

@@ -33,7 +33,7 @@ use App\User;
 @foreach($requests as $request)
 @if($request['approved']==0)
 							<tr>
-								<td>{{$request['id']}}</td>
+								<td>{{$request['requestid']}}</td>
 								<td>{{User::find($request['userid'])->name}}</td>
 								<td>{{Animal::find($request['animalid'])->name}}</td>
 								<td>
