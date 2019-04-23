@@ -21,7 +21,7 @@ class CreateAnimalsTable extends Migration
 			$table->string('species', 20);
 			$table->string('description', 500);
 			$table->integer('availability')->default(0);
-			$table->integer('ownerid', 11)->default(null);
+			$table->integer('ownerid', 11)->nullable();
 			$table->string('image', 256)->nullable();
 			
             $table->timestamps();
