@@ -14,9 +14,8 @@ class CreateRequestsTable extends Migration
     public function up()
     {
         Schema::create('requests', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('requestid');
 			
-			$table->integer('requestid');
 			$table->integer('animalid');
 			$table->integer('userid');
 			$table->integer('approved')->default(0);
