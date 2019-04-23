@@ -18,6 +18,7 @@ class CreateAnimalsTable extends Migration
 			
 			$table->string('name', 20);
 			$table->date('dob');
+			$table->string('species', 20);
 			$table->string('description', 500);
 			$table->string('image', 256)->nullable();
 			$table->integer('availability')->default(0);
