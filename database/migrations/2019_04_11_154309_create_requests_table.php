@@ -19,7 +19,7 @@ class CreateRequestsTable extends Migration
 			$table->integer('requestid');
 			$table->integer('animalid');
 			$table->integer('userid');
-			$table->integer('approved', 1);
+			$table->integer('approved')->default(0);
 			
             $table->timestamps();
         });
