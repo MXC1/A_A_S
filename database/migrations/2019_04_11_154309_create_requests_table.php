@@ -18,7 +18,8 @@ class CreateRequestsTable extends Migration
 			
 			$table->integer('requestid');
 			$table->integer('animalid');
-			$table->string('username', 20);
+			$table->integer('userid');
+			$table->integer('approved', 1);
 			
             $table->timestamps();
         });
