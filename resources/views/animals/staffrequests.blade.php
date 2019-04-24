@@ -45,13 +45,13 @@ btn- primary">Animal Details</a>
 btn- warning">Requester Details</a>
 								</td>
 								<td>
-									<form action="{{action('RequestController@approve', $request['id'])}}"
+									<form action="{{action('RequestController@approve', $request['requestid'])}}"
 method="POST"> @csrf									
 											<button class="btn btn-success" method="POST" type="submit"> Approve</button>
 										</form>
 									</td>
 									<td>
-									<form action="{{action('RequestController@deny', $request['id'])}}"
+									<form action="{{action('RequestController@deny', $request['requestid'])}}"
 method="POST"> @csrf
 											<button class="btn btn-danger" method="POST" type="submit"> Deny</button>
 										</form>
